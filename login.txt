@@ -1,0 +1,28 @@
+<?php
+$file=file("login.txt");
+$in = $_POST['id'];
+$mode = $_POST['mode']; //一般人か管理者か識別
+$pass = $_POST['password'];
+$much = 0;
+foreach($file as $f){
+        $user=explode('<USER>',$f);
+}
+foreach($user as $u){
+        list($id, $password)=explode('<PASS>',$u);
+}
+$usernummber = count($id);
+for($i=0;$i<$usernummber;$i++){
+        if($in==$id[$i] && $pass==$password[$i]){
+                if($mode==0){ //一般ログイン画面から来た場合
+                        header("locatin: 3.html"); //一般人ホームに移動
+                        break; //バイオレント・ブレイク！！
+                }else{ //管理者でログインした場合
+                        header("location: 4.html"); //管理者用ホームに移動
+                        break;
+        }
+}
+}
+        if($i == $usernummber-1){
+                echo "IDまたはパスワードが違います。";
+        }
+?>
